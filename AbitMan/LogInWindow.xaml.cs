@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Security.Cryptography;
 
 namespace AbitMan
@@ -28,7 +18,7 @@ namespace AbitMan
         private void LogInButton_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder hashString = new StringBuilder();
-            byte[] hash = new SHA512Managed().ComputeHash(Encoding.UTF8.GetBytes(LoginText.Text));
+            byte[] hash = new SHA512Managed().ComputeHash(Encoding.UTF8.GetBytes(PasswordText.Password));
             foreach (byte x in hash)
                 hashString.Append(string.Format("{0:x2}", x));
             int priv = DBUtils.CheckUserExist(LoginText.Text, hashString.ToString());

@@ -1,12 +1,178 @@
-﻿<Window x:Class="AbitMan.ManipulationsWindow"
+﻿<Window x:Name="ManipWindos" x:Class="AbitMan.ManipulationsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AbitMan"
         mc:Ignorable="d"
-        Title="ManipulationsWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="ManipulationsWindow" Height="479" Width="508" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closed="ManipWindos_Closed">
     <Grid>
-        
+        <TabControl Margin="10,10,13,11" MinWidth="475" MinHeight="40">
+            <TabItem x:Name="StudentTabItem" Header="Student">
+                <Grid Background="#FFE5E5E5" Visibility="{Binding Visibility, ElementName=StudentTabItem}">
+                    <DataGrid x:Name="StudentDG" MinWidth="460" MinHeight="40" SelectionMode="Single" Margin="0,0,0,176">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding SID}" Header="ID" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding SName}" Header="Имя" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="120" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding Surname}" Header="Фамилия" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="120" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding Course}" Header="Курс" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <GroupBox Header="Добавить" HorizontalAlignment="Left" Height="99" Margin="0,222,0,0" VerticalAlignment="Top" Width="229">
+                        <Grid Margin="0,0,0,0">
+                            <TextBox HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" MaxLines="20" ToolTip="Имя"/>
+                            <TextBox HorizontalAlignment="Left" Height="23" Margin="10,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" ToolTip="Фамилия" MaxLength="20"/>
+                            <ComboBox HorizontalAlignment="Left" Margin="170,9,0,0" VerticalAlignment="Top" Width="37" ToolTip="Курс">
+                                <ComboBoxItem Content="1" IsSelected="True"/>
+                                <ComboBoxItem Content="2"/>
+                                <ComboBoxItem Content="3"/>
+                                <ComboBoxItem Content="4"/>
+                                <ComboBoxItem Content="5"/>
+                            </ComboBox>
+                            <Button Content="Добавить" HorizontalAlignment="Left" Margin="132,44,0,0" VerticalAlignment="Top" Width="75"/>
+                            <Label Content="Курс:" HorizontalAlignment="Left" Margin="127,7,0,0" VerticalAlignment="Top"/>
+
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Изменить" Margin="234,222,0,0">
+                        <Grid Margin="0,0,0,0">
+
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Удалить" HorizontalAlignment="Left" Height="77" Margin="0,321,0,0" VerticalAlignment="Top" Width="229">
+                        <Grid Margin="0,0,0,0">
+
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="GroupsTabItem" Header="Groups">
+                <Grid Background="#FFE5E5E5" Visibility="{Binding Visibility, ElementName=GroupsTabItem}">
+                    <DataGrid x:Name="GroupsDG" MinWidth="460" MinHeight="40" Height="222" VerticalAlignment="Top">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding GID}" Header="ID" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding Starosta}" Header="Староста" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding FName}" Header="Факультет" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding GName}" Header="Название" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="120" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding IsTemp}" CanUserReorder="False" CanUserResize="False" ClipboardContentBinding="{x:Null}" FontSize="14" Header="Временная" IsReadOnly="True" MinWidth="60"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <GroupBox Header="Добавить" HorizontalAlignment="Left" Height="99" Margin="0,222,0,0" VerticalAlignment="Top" Width="229">
+                        <Grid Margin="0,0,0,0">
+
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Изменить" HorizontalAlignment="Left" Height="176" Margin="234,222,0,0" VerticalAlignment="Top" Width="235">
+                        <Grid Margin="0,0,0,0">
+
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Удалить" HorizontalAlignment="Left" Height="77" Margin="0,321,0,0" VerticalAlignment="Top" Width="229">
+                        <Grid Margin="0,0,0,0">
+
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="DiscipleTabItem" Header="Disciple">
+                <Grid Background="#FFE5E5E5" Visibility="{Binding Visibility, ElementName=DiscipleTabItem}">
+                    <DataGrid x:Name="DiscipleDG" MinWidth="460" MinHeight="40" Margin="0,0,0,176">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding DID}" Header="ID" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding DName}" Header="Название" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="120" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding ZvitForm}" Header="Форма отчетности" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="120" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding HoursCount}" Header="Количество часов" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <GroupBox Header="Добавить" HorizontalAlignment="Left" Height="99" Margin="0,222,0,0" VerticalAlignment="Top" Width="229">
+                        <Grid Margin="0,0,0,0">
+
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Изменить" HorizontalAlignment="Left" Height="176" Margin="234,222,0,0" VerticalAlignment="Top" Width="235">
+                        <Grid Margin="0,0,0,0">
+
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Удалить" HorizontalAlignment="Left" Height="77" Margin="0,321,0,0" VerticalAlignment="Top" Width="229">
+                        <Grid Margin="0,0,0,0">
+
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="FacultyTabItem" Header="Faculty">
+                <Grid Background="#FFE5E5E5" Visibility="{Binding Visibility, ElementName=FacultyTabItem}">
+                    <DataGrid x:Name="FacultyDG" MinWidth="460" MinHeight="40" Margin="0,0,0,176">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding FID}" Header="ID" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding FName}" Header="Название" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="120" FontSize="14"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <GroupBox Header="Добавить" HorizontalAlignment="Left" Height="99" Margin="0,222,0,0" VerticalAlignment="Top" Width="229">
+                        <Grid Margin="0,0,0,0">
+
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Изменить" HorizontalAlignment="Left" Height="176" Margin="234,222,0,0" VerticalAlignment="Top" Width="235">
+                        <Grid Margin="0,0,0,0">
+
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Удалить" HorizontalAlignment="Left" Height="77" Margin="0,321,0,0" VerticalAlignment="Top" Width="229">
+                        <Grid Margin="0,0,0,0">
+
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="N_NTabItem" Header="N:N relTables">
+                <Grid Background="#FFF0F0F0" Visibility="{Binding Visibility, ElementName=N_NTabItem}">
+                    <DataGrid x:Name="Stud_GroupDG" MinHeight="40" HorizontalAlignment="Left" Width="238" Margin="0,26,0,184">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding SID}" Header="Студент" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="80" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding GID}" Header="Группа" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="80" FontSize="14"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid x:Name="Group_DiscDG" MinHeight="40" HorizontalAlignment="Right" Width="229" Margin="0,26,0,184">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding GID}" Header="Группа" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="80" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding DID}" Header="Дисциплина" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="80" FontSize="14"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label Content="Студент-Группа" HorizontalAlignment="Left" Margin="54,-4,0,0" VerticalAlignment="Top" FontSize="14"/>
+                    <GroupBox Header="Добавить" HorizontalAlignment="Left" Height="58" Margin="0,214,0,0" VerticalAlignment="Top" Width="235">
+                        <Grid Margin="0,0,0,0">
+
+                        </Grid>
+                    </GroupBox>
+                    <Label Content="Группа-Дисциплина" Margin="0,-4,53,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Right" Width="142"/>
+                    <GroupBox Header="Изменить" HorizontalAlignment="Left" Height="73" Margin="0,272,0,0" VerticalAlignment="Top" Width="235">
+                        <Grid Margin="0,0,0,0">
+
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Добавить" HorizontalAlignment="Left" Height="58" Margin="240,214,0,0" VerticalAlignment="Top" Width="229">
+                        <Grid Margin="0,0,0,0"/>
+                    </GroupBox>
+                    <GroupBox Header="Удалить" HorizontalAlignment="Left" Height="53" Margin="0,345,0,0" VerticalAlignment="Top" Width="235">
+                        <Grid Margin="0,0,0,0">
+
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Изменить" HorizontalAlignment="Left" Height="73" Margin="240,272,0,0" VerticalAlignment="Top" Width="229">
+                        <Grid Margin="0,0,0,0">
+
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Удалить" HorizontalAlignment="Left" Height="53" Margin="240,345,0,0" VerticalAlignment="Top" Width="229">
+                        <Grid Margin="0,0,0,0">
+
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
     </Grid>
 </Window>

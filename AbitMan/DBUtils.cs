@@ -98,6 +98,30 @@ namespace AbitMan
             conn.Close();
         }
 
+        public static string AddUser(string login, string password, string IsAdmin)
+        {
+            conn.Open();
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "insert into Users(Login,Pswd,IsAdmin) " +
+                               "values (@Login,@Pswd," + IsAdmin +");";
+            comm.Connection = conn;
+            comm.Parameters.Add("@Login", login);
+            comm.Parameters.Add("@Pswd", password);
+            try
+            {
+                comm.ExecuteNonQuery();
+            }
+            catch(Exception ex)
+            {
+                return ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return "Успешно добавлено нового пользователя.";
+        }
+
         public static void GetFromDB(List<Student> DataList, string str)
         {
             conn.Open();
@@ -190,6 +214,114 @@ namespace AbitMan
                 DataList.Add(new Group_Disc(
                     ((int)reader["GID"]).ToString(),
                     ((int)reader["DID"]).ToString()));
+            }
+            reader.Close();
+            conn.Close();
+        }
+
+        public static void GetFromDB(List<Res1Storage> DataList, string str, string param)
+        {
+            conn.Open();
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = str;
+            comm.Connection = conn;
+            comm.Parameters.Add("@Group", param);
+            MySqlDataReader reader = comm.ExecuteReader();
+            while (reader.Read())
+            {
+                DataList.Add(new Res1Storage(
+                    (string)reader["SName"],
+                    (string)reader["Surname"],
+                    (string)reader["GName"],
+                    ((int)reader["Course"]).ToString()));
+            }
+            reader.Close();
+            conn.Close();
+        }
+
+        public static void GetFromDB(List<Res2Storage> DataList, string str, string param)
+        {
+            conn.Open();
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = str;
+            comm.Connection = conn;
+            comm.Parameters.Add("@Faculty", param);
+            MySqlDataReader reader = comm.ExecuteReader();
+            while (reader.Read())
+            {
+                DataList.Add(new Res2Storage(
+                    (string)reader["SName"],
+                    (string)reader["Surname"],
+                    (string)reader["GName"],
+                    (string)reader["FName"],
+                    ((int)reader["Course"]).ToString()));
+            }
+            reader.Close();
+            conn.Close();
+        }
+
+        public static void GetFromDB(List<Res3Storage> DataList, string str)
+        {
+            conn.Open();
+            MySqlDataReader reader = new MySqlCommand
+            { CommandText = str, Connection = conn }.ExecuteReader();
+            while (reader.Read())
+            {
+                DataList.Add(new Res3Storage(
+                    (string)reader["FName"],
+                    ((int)reader["Course"]).ToString(),
+                    (string)reader["GName"],
+                    ((long)reader["Num"]).ToString()));
+            }
+            reader.Close();
+            conn.Close();
+        }
+
+        public static void GetFromDB(List<Res4Storage> DataList, string str)
+        {
+            conn.Open();
+            MySqlDataReader reader = new MySqlCommand
+            { CommandText = str, Connection = conn }.ExecuteReader();
+            while (reader.Read())
+            {
+                DataList.Add(new Res4Storage(
+                    (string)reader["SName"],
+                    (string)reader["Surname"],
+                    (string)reader["GName"],
+                    ((int)reader["Course"]).ToString()));
+            }
+            reader.Close();
+            conn.Close();
+        }
+
+        public static void GetFromDB(List<Res5Storage> DataList, string str, string param)
+        {
+            conn.Open();
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = str;
+            comm.Connection = conn;
+            comm.Parameters.Add("@Group", param);
+            MySqlDataReader reader = comm.ExecuteReader();
+            while (reader.Read())
+            {
+                DataList.Add(new Res5Storage(
+                    (string)reader["GName"],
+                    ((decimal)reader["AvgHours"]).ToString()));
+            }
+            reader.Close();
+            conn.Close();
+        }
+
+        public static void GetFromDB(List<Res6Storage> DataList, string str)
+        {
+            conn.Open();
+            MySqlDataReader reader = new MySqlCommand
+            { CommandText = str, Connection = conn }.ExecuteReader();
+            while (reader.Read())
+            {
+                DataList.Add(new Res6Storage(
+                    (string)reader["Title"],
+                    ((long)reader["Num"]).ToString()));
             }
             reader.Close();
             conn.Close();

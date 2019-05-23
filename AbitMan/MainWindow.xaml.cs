@@ -10,7 +10,7 @@ namespace AbitMan
         public MainWindow()
         {
             InitializeComponent();
-            //CheckUserPrivs();
+            CheckUserPrivs();
         }
 
         private void QueryButton_Click(object sender, RoutedEventArgs e)

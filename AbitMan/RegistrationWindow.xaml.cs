@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace AbitMan
 {
@@ -22,6 +13,37 @@ namespace AbitMan
         public RegistrationWindow()
         {
             InitializeComponent();
+            if (ProgramData.Privs == 2)
+                IsAdminChB.IsEnabled = true;
+            else
+                IsAdminChB.IsEnabled = false;
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            StringBuilder hashString = new StringBuilder();
+            byte[] hash = new SHA512Managed().ComputeHash(Encoding.UTF8.GetBytes(PasswordText.Password));
+            foreach (byte x in hash)
+                hashString.Append(string.Format("{0:x2}", x));
+            string result;
+            if (ProgramData.Privs == 2)
+                result = DBUtils.AddUser(LoginText.Text, hashString.ToString(), IsAdminChB.IsChecked.Value ? "True" : "False");
+            else
+                result = DBUtils.AddUser(LoginText.Text, hashString.ToString(), "False");
+            if (result == "Успешно добавлено нового пользователя.")
+            {
+                MessageBox.Show(result, "Успех");
+                Close();
+            }
+            else
+                MessageBox.Show(result, "Неудача");
+            LoginText.Text = "";
+            PasswordText.Password = "";
+        }
+
+        private void RegistrationWindow1_Closed(object sender, EventArgs e)
+        {
+            new MainWindow().Show();
         }
     }
 }

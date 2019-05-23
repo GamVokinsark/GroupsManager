@@ -27,7 +27,7 @@
                             <DataGridTextColumn Binding="{Binding GID}" Header="ID" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
                             <DataGridTextColumn Binding="{Binding Starosta}" Header="Староста" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
                             <DataGridTextColumn Binding="{Binding FName}" Header="Факультет" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
-                            <DataGridTextColumn Binding="{Binding GNAme}" Header="Название" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="120" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding GName}" Header="Название" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="120" FontSize="14"/>
                             <DataGridTextColumn Binding="{Binding IsTemp}" CanUserReorder="False" CanUserResize="False" ClipboardContentBinding="{x:Null}" FontSize="14" Header="Временная" IsReadOnly="True" MinWidth="60"/>
                         </DataGrid.Columns>
                     </DataGrid>

@@ -23,5 +23,10 @@ namespace AbitMan
         {
             InitializeComponent();
         }
+
+        private void ManipWindos_Closed(object sender, EventArgs e)
+        {
+            new MainWindow().Show();
+        }
     }
 }

@@ -14,6 +14,6 @@
         <Button x:Name="RegistryButton" Content="Регистрация" HorizontalAlignment="Left" Margin="55,123,0,0" VerticalAlignment="Top" Width="170" FontSize="14" Click="RegistryButton_Click"/>
         <Button x:Name="ConnectButton" Content="Подключить к БД" HorizontalAlignment="Left" Margin="55,147,0,0" VerticalAlignment="Top" Width="170" FontSize="14" Click="ConnectButton_Click"/>
         <Button x:Name="ManipulateButton" Content="Манипуляция с данными" HorizontalAlignment="Left" Margin="55,172,0,0" VerticalAlignment="Top" Width="170" FontSize="14" Click="ManipulateButton_Click"/>
-        <Label x:Name="MarkLabel" Content="" Margin="0,0,210,0" Height="25" VerticalAlignment="Bottom" FlowDirection="RightToLeft" FontSize="14"/>
+        <Label x:Name="MarkLabel" Content="" Margin="0,0,210,0" Height="25" VerticalAlignment="Bottom" FontSize="14"/>
     </Grid>
 </Window>
