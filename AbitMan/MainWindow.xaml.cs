@@ -11,6 +11,7 @@ namespace AbitMan
         {
             InitializeComponent();
             CheckUserPrivs();
+            CheckDbAvailable();
         }
 
         private void QueryButton_Click(object sender, RoutedEventArgs e)
@@ -89,6 +90,17 @@ namespace AbitMan
                     MessageBox.Show("Произошла ошибка привилегий пользователя!", "Ошибка");
                     Close();
                     break;
+            }
+        }
+
+        private void CheckDbAvailable()
+        {
+            if(!DBUtils.IsAvailable())
+            {
+                LogInButton.IsEnabled = false;
+                RegistryButton.IsEnabled = false;
+                QueryButton.IsEnabled = false;
+                ManipulateButton.IsEnabled = false;
             }
         }
     }

@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AbitMan"
         mc:Ignorable="d"
-        Title="ManipulationsWindow" Height="479" Width="508" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closed="ManipWindos_Closed">
+        Title="GroupsManager: Окно редактирования данных" Height="479" Width="508" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closed="ManipWindos_Closed">
     <Grid>
-        <TabControl Margin="10,10,13,11" MinWidth="475" MinHeight="40">
+        <TabControl Margin="10,10,13,11" MinWidth="475" MinHeight="40" SelectionChanged="TabControl_SelectionChanged">
             <TabItem x:Name="StudentTabItem" Header="Student">
                 <Grid Background="#FFE5E5E5" Visibility="{Binding Visibility, ElementName=StudentTabItem}">
                     <DataGrid x:Name="StudentDG" MinWidth="460" MinHeight="40" SelectionMode="Single" Margin="0,0,0,176">
@@ -20,27 +20,44 @@
                     </DataGrid>
                     <GroupBox Header="Добавить" HorizontalAlignment="Left" Height="99" Margin="0,222,0,0" VerticalAlignment="Top" Width="229">
                         <Grid Margin="0,0,0,0">
-                            <TextBox HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" MaxLines="20" ToolTip="Имя"/>
-                            <TextBox HorizontalAlignment="Left" Height="23" Margin="10,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" ToolTip="Фамилия" MaxLength="20"/>
-                            <ComboBox HorizontalAlignment="Left" Margin="170,9,0,0" VerticalAlignment="Top" Width="37" ToolTip="Курс">
+                            <TextBox x:Name="StudAddNameText" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" MaxLines="20" ToolTip="Имя"/>
+                            <TextBox x:Name="StudAddSurnText" HorizontalAlignment="Left" Height="23" Margin="10,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" ToolTip="Фамилия" MaxLength="20"/>
+                            <ComboBox x:Name="StudAddComBox" HorizontalAlignment="Left" Margin="170,9,0,0" VerticalAlignment="Top" Width="37" ToolTip="Курс">
                                 <ComboBoxItem Content="1" IsSelected="True"/>
                                 <ComboBoxItem Content="2"/>
                                 <ComboBoxItem Content="3"/>
                                 <ComboBoxItem Content="4"/>
                                 <ComboBoxItem Content="5"/>
                             </ComboBox>
-                            <Button Content="Добавить" HorizontalAlignment="Left" Margin="132,44,0,0" VerticalAlignment="Top" Width="75"/>
+                            <Button x:Name="StudAddButton" Content="Добавить" HorizontalAlignment="Left" Margin="132,44,0,0" VerticalAlignment="Top" Width="75" Click="StudAddButton_Click"/>
                             <Label Content="Курс:" HorizontalAlignment="Left" Margin="127,7,0,0" VerticalAlignment="Top"/>
 
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Изменить" Margin="234,222,0,0">
                         <Grid Margin="0,0,0,0">
+                            <Button x:Name="StudChangeButton" Content="Изменить" HorizontalAlignment="Left" Margin="77,122,0,0" VerticalAlignment="Top" Width="75" Click="StudChangeButton_Click"/>
+                            <ComboBox x:Name="StudChangeIdComBox" HorizontalAlignment="Left" Margin="77,10,0,0" VerticalAlignment="Top" Width="136" SelectionChanged="StudChangeIdComBox_SelectionChanged"/>
+                            <TextBox x:Name="StudChangeNameText" HorizontalAlignment="Left" Height="23" Margin="77,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" ToolTip="Имя"/>
+                            <TextBox x:Name="StudChangeSurnText" HorizontalAlignment="Left" Height="23" Margin="77,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" ToolTip="Фамилия"/>
+                            <ComboBox x:Name="StudChangeCoursComBox" HorizontalAlignment="Left" Margin="77,93,0,0" VerticalAlignment="Top" Width="52" ToolTip="Курс">
+                                <ComboBoxItem Content="1" IsSelected="True"/>
+                                <ComboBoxItem Content="2"/>
+                                <ComboBoxItem Content="3"/>
+                                <ComboBoxItem Content="4"/>
+                                <ComboBoxItem Content="5"/>
+                            </ComboBox>
+                            <Label Content="Курс:" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top"/>
+                            <Label Content="ID:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                            <Label Content="Имя:" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
+                            <Label Content="Фамилия:" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top"/>
 
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Удалить" HorizontalAlignment="Left" Height="77" Margin="0,321,0,0" VerticalAlignment="Top" Width="229">
                         <Grid Margin="0,0,0,0">
+                            <ComboBox x:Name="StudDelComBox" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top" Width="147"/>
+                            <Button x:Name="StudDelButton" Content="Удалить" HorizontalAlignment="Left" Margin="157,18,0,0" VerticalAlignment="Top" Width="53" Click="StudDelButton_Click"/>
 
                         </Grid>
                     </GroupBox>
@@ -48,27 +65,47 @@
             </TabItem>
             <TabItem x:Name="GroupsTabItem" Header="Groups">
                 <Grid Background="#FFE5E5E5" Visibility="{Binding Visibility, ElementName=GroupsTabItem}">
-                    <DataGrid x:Name="GroupsDG" MinWidth="460" MinHeight="40" Height="222" VerticalAlignment="Top">
+                    <DataGrid x:Name="GroupsDG" MinWidth="460" MinHeight="40" Height="185" VerticalAlignment="Top">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding GID}" Header="ID" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
                             <DataGridTextColumn Binding="{Binding Starosta}" Header="Староста" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
-                            <DataGridTextColumn Binding="{Binding FName}" Header="Факультет" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding FID}" Header="Факультет" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
                             <DataGridTextColumn Binding="{Binding GName}" Header="Название" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="120" FontSize="14"/>
                             <DataGridTextColumn Binding="{Binding IsTemp}" CanUserReorder="False" CanUserResize="False" ClipboardContentBinding="{x:Null}" FontSize="14" Header="Временная" IsReadOnly="True" MinWidth="60"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <GroupBox Header="Добавить" HorizontalAlignment="Left" Height="99" Margin="0,222,0,0" VerticalAlignment="Top" Width="229">
+                    <GroupBox Header="Добавить" HorizontalAlignment="Left" Height="136" Margin="0,185,0,0" VerticalAlignment="Top" Width="229">
                         <Grid Margin="0,0,0,0">
+                            <TextBox x:Name="GroupAddTitleText" HorizontalAlignment="Left" Height="23" Margin="77,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" MaxLines="20" ToolTip=""/>
+                            <ComboBox x:Name="GroupAddStarostaComBox" HorizontalAlignment="Left" Margin="77,40,0,0" VerticalAlignment="Top" Width="130" ToolTip=""/>
+                            <Button x:Name="GroupAddButton" Content="Добавить" HorizontalAlignment="Left" Margin="132,89,0,0" VerticalAlignment="Top" Width="75" Click="GroupAddButton_Click"/>
+                            <Label Content="Староста:" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
+                            <Label Content="Название:" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top"/>
+                            <ComboBox x:Name="GroupAddFacultyComBox" HorizontalAlignment="Left" Margin="77,66,0,0" VerticalAlignment="Top" Width="130" ToolTip=""/>
+                            <Label Content="Факультет:" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top"/>
+                            <CheckBox x:Name="GroupAddIsTempChB" Content="Временная" HorizontalAlignment="Left" Margin="17,92,0,0" VerticalAlignment="Top"/>
 
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Изменить" HorizontalAlignment="Left" Height="176" Margin="234,222,0,0" VerticalAlignment="Top" Width="235">
+                    <GroupBox Header="Изменить" Margin="234,185,0,0">
                         <Grid Margin="0,0,0,0">
+                            <Button x:Name="GroupChangeButton" Content="Изменить" HorizontalAlignment="Left" Margin="132,120,0,0" VerticalAlignment="Top" Width="75" Click="GroupChangeButton_Click"/>
+                            <ComboBox x:Name="GroupChangeIdComBox" HorizontalAlignment="Left" Margin="77,10,0,0" VerticalAlignment="Top" Width="130" SelectionChanged="GroupChangeIdComBox_SelectionChanged"/>
+                            <Label Content="ID:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="GroupChangeTitleText" HorizontalAlignment="Left" Height="23" Margin="77,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" MaxLines="20" ToolTip=""/>
+                            <ComboBox x:Name="GroupChangeStarostaComBox" HorizontalAlignment="Left" Margin="77,66,0,0" VerticalAlignment="Top" Width="130" ToolTip=""/>
+                            <Label Content="Староста:" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top"/>
+                            <ComboBox x:Name="GroupChangeFacultyComBox" HorizontalAlignment="Left" Margin="77,92,0,0" VerticalAlignment="Top" Width="130" ToolTip=""/>
+                            <Label Content="Факультет:" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top"/>
+                            <CheckBox x:Name="GroupChangeIsTempChB" Content="Временная" HorizontalAlignment="Left" Margin="17,126,0,0" VerticalAlignment="Top"/>
+                            <Label Content="Название:" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top"/>
 
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Удалить" HorizontalAlignment="Left" Height="77" Margin="0,321,0,0" VerticalAlignment="Top" Width="229">
                         <Grid Margin="0,0,0,0">
+                            <ComboBox x:Name="GroupDelComBox" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="143"/>
+                            <Button x:Name="GroupDelButton" Content="Удалить" HorizontalAlignment="Left" Margin="153,19,0,0" VerticalAlignment="Top" Width="57" Click="GroupDelButton_Click"/>
 
                         </Grid>
                     </GroupBox>
@@ -86,16 +123,39 @@
                     </DataGrid>
                     <GroupBox Header="Добавить" HorizontalAlignment="Left" Height="99" Margin="0,222,0,0" VerticalAlignment="Top" Width="229">
                         <Grid Margin="0,0,0,0">
+                            <TextBox x:Name="DiscAddTitleText" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" MaxLines="20" ToolTip="Название"/>
+                            <Button x:Name="DiscAddButton" Content="Добавить" HorizontalAlignment="Left" Margin="132,44,0,0" VerticalAlignment="Top" Width="75" Click="DiscAddButton_Click"/>
+                            <ComboBox x:Name="DiscAddHCountComBox" HorizontalAlignment="Left" Margin="132,10,0,0" VerticalAlignment="Top" Width="75" ToolTip="Количество часов" MaxDropDownHeight="180"/>
+                            <ComboBox x:Name="DiscAddZvitFormComBox" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" Width="105">
+                                <ComboBoxItem Content="Не выбрано" IsSelected="True"/>
+                                <ComboBoxItem Content="Zalik"/>
+                                <ComboBoxItem Content="Examen"/>
+                            </ComboBox>
 
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Изменить" HorizontalAlignment="Left" Height="176" Margin="234,222,0,0" VerticalAlignment="Top" Width="235">
+                    <GroupBox Header="Изменить" Margin="234,222,0,0">
                         <Grid Margin="0,0,0,0">
+                            <Button x:Name="DiscChangeButton" Content="Изменить" HorizontalAlignment="Left" Margin="80,122,0,0" VerticalAlignment="Top" Width="75" Click="DiscChangeButton_Click"/>
+                            <ComboBox x:Name="DiscChangeIdComBox" HorizontalAlignment="Left" Margin="80,10,0,0" VerticalAlignment="Top" Width="133" SelectionChanged="DiscChangeIdComBox_SelectionChanged"/>
+                            <TextBox x:Name="DiscChangeTitleText" HorizontalAlignment="Left" Height="23" Margin="80,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133" ToolTip=""/>
+                            <Label Content="ID:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                            <Label Content="Название:" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
+                            <Label Content="Вид отчетности:" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top"/>
+                            <Label Content="Часов:" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top"/>
+                            <ComboBox x:Name="DiscChangeHCountComBox" HorizontalAlignment="Left" Margin="80,89,0,0" VerticalAlignment="Top" Width="75" MaxDropDownHeight="180"/>
+                            <ComboBox x:Name="DiscChangeZvitFormComBox" HorizontalAlignment="Left" Margin="108,63,0,0" VerticalAlignment="Top" Width="105">
+                                <ComboBoxItem Content="Не выбрано" IsSelected="True"/>
+                                <ComboBoxItem Content="Zalik"/>
+                                <ComboBoxItem Content="Examen"/>
+                            </ComboBox>
 
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Удалить" HorizontalAlignment="Left" Height="77" Margin="0,321,0,0" VerticalAlignment="Top" Width="229">
                         <Grid Margin="0,0,0,0">
+                            <ComboBox x:Name="DiscDelComBox" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top" Width="143"/>
+                            <Button x:Name="DiscDelButton" Content="Удалить" HorizontalAlignment="Left" Margin="153,18,0,0" VerticalAlignment="Top" Width="57" Click="DiscDelButton_Click"/>
 
                         </Grid>
                     </GroupBox>
@@ -103,24 +163,34 @@
             </TabItem>
             <TabItem x:Name="FacultyTabItem" Header="Faculty">
                 <Grid Background="#FFE5E5E5" Visibility="{Binding Visibility, ElementName=FacultyTabItem}">
-                    <DataGrid x:Name="FacultyDG" MinWidth="460" MinHeight="40" Margin="0,0,0,176">
+                    <DataGrid x:Name="FacultyDG" MinWidth="460" MinHeight="40" Margin="0,0,0,162">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding FID}" Header="ID" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
                             <DataGridTextColumn Binding="{Binding FName}" Header="Название" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="120" FontSize="14"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <GroupBox Header="Добавить" HorizontalAlignment="Left" Height="99" Margin="0,222,0,0" VerticalAlignment="Top" Width="229">
+                    <GroupBox Header="Добавить" HorizontalAlignment="Left" Height="91" Margin="0,236,0,0" VerticalAlignment="Top" Width="229">
                         <Grid Margin="0,0,0,0">
+                            <TextBox x:Name="FacultAddTitleText" HorizontalAlignment="Left" Height="23" Margin="80,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="127" MaxLines="20" ToolTip=""/>
+                            <Button x:Name="FacultAddButton" Content="Добавить" HorizontalAlignment="Left" Margin="68,40,0,0" VerticalAlignment="Top" Width="75" Click="FacultAddButton_Click"/>
+                            <Label Content="Название:" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top"/>
 
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Изменить" HorizontalAlignment="Left" Height="176" Margin="234,222,0,0" VerticalAlignment="Top" Width="235">
+                    <GroupBox Header="Изменить" Margin="234,236,0,0">
                         <Grid Margin="0,0,0,0">
+                            <Button x:Name="FacultChangeButton" Content="Изменить" HorizontalAlignment="Left" Margin="69,75,0,0" VerticalAlignment="Top" Width="75" Click="FacultChangeButton_Click"/>
+                            <ComboBox x:Name="FacultChangeIdComBox" HorizontalAlignment="Left" Margin="51,10,0,0" VerticalAlignment="Top" Width="162" SelectionChanged="FacultChangeIdComBox_SelectionChanged"/>
+                            <TextBox x:Name="FacultChangeTitleText" HorizontalAlignment="Left" Height="23" Margin="51,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" ToolTip=""/>
+                            <Label Content="ID:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                            <Label Content="Имя:" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top"/>
 
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Удалить" HorizontalAlignment="Left" Height="77" Margin="0,321,0,0" VerticalAlignment="Top" Width="229">
+                    <GroupBox Header="Удалить" HorizontalAlignment="Left" Height="71" Margin="0,327,0,0" VerticalAlignment="Top" Width="229">
                         <Grid Margin="0,0,0,0">
+                            <ComboBox x:Name="FacultDelComBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="145"/>
+                            <Button x:Name="FacultDelButton" Content="Удалить" HorizontalAlignment="Left" Margin="155,10,0,0" VerticalAlignment="Top" Width="55" Click="FacultDelButton_Click"/>
 
                         </Grid>
                     </GroupBox>
@@ -128,45 +198,67 @@
             </TabItem>
             <TabItem x:Name="N_NTabItem" Header="N:N relTables">
                 <Grid Background="#FFF0F0F0" Visibility="{Binding Visibility, ElementName=N_NTabItem}">
-                    <DataGrid x:Name="Stud_GroupDG" MinHeight="40" HorizontalAlignment="Left" Width="238" Margin="0,26,0,184">
+                    <DataGrid x:Name="Stud_GroupDG" MinHeight="40" HorizontalAlignment="Left" Width="238" Margin="0,26,0,230">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding SID}" Header="Студент" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="80" FontSize="14"/>
                             <DataGridTextColumn Binding="{Binding GID}" Header="Группа" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="80" FontSize="14"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid x:Name="Group_DiscDG" MinHeight="40" HorizontalAlignment="Right" Width="229" Margin="0,26,0,184">
+                    <DataGrid x:Name="Group_DiscDG" MinHeight="40" HorizontalAlignment="Right" Width="229" Margin="0,26,0,230">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding GID}" Header="Группа" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="80" FontSize="14"/>
                             <DataGridTextColumn Binding="{Binding DID}" Header="Дисциплина" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="80" FontSize="14"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Label Content="Студент-Группа" HorizontalAlignment="Left" Margin="54,-4,0,0" VerticalAlignment="Top" FontSize="14"/>
-                    <GroupBox Header="Добавить" HorizontalAlignment="Left" Height="58" Margin="0,214,0,0" VerticalAlignment="Top" Width="235">
-                        <Grid Margin="0,0,0,0">
-
-                        </Grid>
-                    </GroupBox>
                     <Label Content="Группа-Дисциплина" Margin="0,-4,53,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Right" Width="142"/>
-                    <GroupBox Header="Изменить" HorizontalAlignment="Left" Height="73" Margin="0,272,0,0" VerticalAlignment="Top" Width="235">
+                    <GroupBox Header="Добавить" HorizontalAlignment="Left" Height="57" Margin="0,168,0,0" VerticalAlignment="Top" Width="238">
                         <Grid Margin="0,0,0,0">
+                            <Button x:Name="N_NSGAddButton" Content="Добавить" HorizontalAlignment="Left" Margin="155,10,0,0" VerticalAlignment="Top" Width="61" Click="N_NSGAddButton_Click"/>
+                            <ComboBox x:Name="N_NSGAddStudComBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75"/>
+                            <ComboBox x:Name="N_NSGAddGroupComBox" HorizontalAlignment="Left" Margin="85,10,0,0" VerticalAlignment="Top" Width="70"/>
 
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Добавить" HorizontalAlignment="Left" Height="58" Margin="240,214,0,0" VerticalAlignment="Top" Width="229">
-                        <Grid Margin="0,0,0,0"/>
-                    </GroupBox>
-                    <GroupBox Header="Удалить" HorizontalAlignment="Left" Height="53" Margin="0,345,0,0" VerticalAlignment="Top" Width="235">
+                    <GroupBox Header="Изменить" Margin="0,225,231,61">
                         <Grid Margin="0,0,0,0">
+                            <Button x:Name="N_NSGChangeButton" Content="Изменить" HorizontalAlignment="Left" Margin="147,37,0,0" VerticalAlignment="Top" Width="69" Click="N_NSGChangeButton_Click"/>
+                            <ComboBox x:Name="N_NSGChangeIdComBox" HorizontalAlignment="Left" Margin="39,10,0,0" VerticalAlignment="Top" Width="177" SelectionChanged="N_NSGChangeIdComBox_SelectionChanged"/>
+                            <Label Content="ID:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                            <ComboBox x:Name="N_NSGChangeStudComBox" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="69"/>
+                            <ComboBox x:Name="N_NSGChangeGroupComBox" HorizontalAlignment="Left" Margin="79,37,0,0" VerticalAlignment="Top" Width="68"/>
 
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Изменить" HorizontalAlignment="Left" Height="73" Margin="240,272,0,0" VerticalAlignment="Top" Width="229">
+                    <GroupBox Header="Удалить" HorizontalAlignment="Left" Height="61" Margin="0,337,0,0" VerticalAlignment="Top" Width="238">
                         <Grid Margin="0,0,0,0">
+                            <ComboBox x:Name="N_NSGDelIdComBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="148"/>
+                            <Button x:Name="N_NSGDelButton" Content="Удалить" HorizontalAlignment="Left" Margin="158,10,0,0" VerticalAlignment="Top" Width="58" Click="N_NSGDelButton_Click"/>
 
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Удалить" HorizontalAlignment="Left" Height="53" Margin="240,345,0,0" VerticalAlignment="Top" Width="229">
+                    <GroupBox Header="Добавить" HorizontalAlignment="Left" Height="57" Margin="240,168,0,0" VerticalAlignment="Top" Width="229">
                         <Grid Margin="0,0,0,0">
+                            <Button x:Name="N_NGDAddButton" Content="Добавить" HorizontalAlignment="Left" Margin="146,10,0,0" VerticalAlignment="Top" Width="61" Click="N_NGDAddButton_Click"/>
+                            <ComboBox x:Name="N_NGDAddGroupComBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="70"/>
+                            <ComboBox x:Name="N_NGDAddDiscComBox" HorizontalAlignment="Left" Margin="80,10,0,0" VerticalAlignment="Top" Width="66"/>
+
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Изменить" Margin="240,225,0,60">
+                        <Grid Margin="0,0,0,0">
+                            <Button x:Name="N_NGDChangeButton" Content="Изменить" HorizontalAlignment="Left" Margin="138,37,0,0" VerticalAlignment="Top" Width="69" Click="N_NGDChangeButton_Click"/>
+                            <ComboBox x:Name="N_NGDChangeIdComBox" HorizontalAlignment="Left" Margin="39,10,0,0" VerticalAlignment="Top" Width="168" SelectionChanged="N_NGDChangeIdComBox_SelectionChanged"/>
+                            <Label Content="ID:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                            <ComboBox x:Name="N_NGDChangeGroupComBox" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="65"/>
+                            <ComboBox x:Name="N_NGDChangeDiscComBox" HorizontalAlignment="Left" Margin="75,37,0,0" VerticalAlignment="Top" Width="63"/>
+
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Удалить" HorizontalAlignment="Left" Height="61" Margin="240,338,0,-1" VerticalAlignment="Top" Width="229">
+                        <Grid Margin="0,0,0,0">
+                            <ComboBox x:Name="N_NGDDelIdComBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="142"/>
+                            <Button x:Name="N_NGDDelButton" Content="Удалить" HorizontalAlignment="Left" Margin="152,10,0,0" VerticalAlignment="Top" Width="58" Click="N_NGDDelButton_Click"/>
 
                         </Grid>
                     </GroupBox>

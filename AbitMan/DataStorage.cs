@@ -18,18 +18,18 @@
 
     class Groups
     {
-        public Groups(string gId, string starosta, string fName, string gName, string isTemp)
+        public Groups(string gId, string starosta, string fID, string gName, string isTemp)
         {
             GID = gId;
             Starosta = starosta;
-            FName = fName;
+            FID = fID;
             GName = gName;
             IsTemp = isTemp;
         }
 
         public string GID { get; set; }
         public string Starosta { get; set; }
-        public string FName { get; set; }
+        public string FID { get; set; }
         public string GName { get; set; }
         public string IsTemp { get; set; }
     }

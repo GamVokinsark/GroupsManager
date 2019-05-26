@@ -33,9 +33,9 @@ namespace AbitMan
         {
             try
             {
-                string cStr = "Server=" + host + ";port=" + port 
-                    + ";Database=" + schema + ";User Id=" 
-                    + user + ";password=" + password + ";";
+                string cStr = "Server='" + host.Replace('\'',' ') + "';port='" + port.Replace('\'', ' ')
+                    + "';Database='" + schema.Replace('\'', ' ') + "';User Id='" 
+                    + user.Replace('\'', ' ') + "';password='" + password.Replace('\'', ' ') + "';";
                 conn = new MySqlConnection(cStr);
             }
             catch (Exception ex)
@@ -122,6 +122,26 @@ namespace AbitMan
             return "Успешно добавлено нового пользователя.";
         }
 
+        public static bool DataManipulate(MySqlCommand msc)
+        {
+            conn.Open();
+            msc.Connection = conn;
+            try
+            {
+                msc.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Неудачно выполено операцию. Текст ошибки:\n" + ex.Message, "Ошибка");
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return true;
+        }
+
         public static void GetFromDB(List<Student> DataList, string str)
         {
             conn.Open();
@@ -146,6 +166,7 @@ namespace AbitMan
                 { CommandText = str, Connection = conn }.ExecuteReader();
             while (reader.Read())
             {
+
                 DataList.Add(new Groups(
                     ((int)reader["GID"]).ToString(),
                     ((int)reader["Starosta"]).ToString(),

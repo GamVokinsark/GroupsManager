@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AbitMan"
         mc:Ignorable="d"
-        Title="AbitMan: Окно запросов" Height="333" Width="505" WindowStartupLocation="CenterScreen" Closed="QueryWindow1_Closed" ResizeMode="NoResize">
+        Title="GroupsManager: Окно запросов" Height="333" Width="505" WindowStartupLocation="CenterScreen" Closed="QueryWindow1_Closed" ResizeMode="NoResize">
     <Grid>
         <TabControl Margin="10,34,10,10" MinWidth="475" MinHeight="40">
             <TabItem x:Name="StudentTabItem" Header="Student">
@@ -26,9 +26,9 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding GID}" Header="ID" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
                             <DataGridTextColumn Binding="{Binding Starosta}" Header="Староста" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
-                            <DataGridTextColumn Binding="{Binding FName}" Header="Факультет" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding FID}" Header="Факультет" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="50" FontSize="14"/>
                             <DataGridTextColumn Binding="{Binding GName}" Header="Название" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="120" FontSize="14"/>
-                            <DataGridTextColumn Binding="{Binding IsTemp}" CanUserReorder="False" CanUserResize="False" ClipboardContentBinding="{x:Null}" FontSize="14" Header="Временная" IsReadOnly="True" MinWidth="60"/>
+                            <DataGridTextColumn Binding="{Binding IsTemp}" CanUserReorder="False" CanUserResize="False" FontSize="14" Header="Временная" IsReadOnly="True" MinWidth="60"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -94,8 +94,8 @@
                             <DataGridTextColumn Binding="{Binding SName}" Header="Имя" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="100" FontSize="14"/>
                             <DataGridTextColumn Binding="{Binding Surname}" Header="Фамилия" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="100" FontSize="14"/>
                             <DataGridTextColumn Binding="{Binding GName}" Header="Группа" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="80" FontSize="14"/>
-                            <DataGridTextColumn Binding="{Binding FName}" CanUserReorder="False" CanUserResize="False" ClipboardContentBinding="{x:Null}" FontSize="14" Header="Факультет" IsReadOnly="True" MinWidth="80"/>
-                            <DataGridTextColumn Binding="{Binding Course}" CanUserReorder="False" CanUserResize="False" ClipboardContentBinding="{x:Null}" FontSize="14" Header="Курс" IsReadOnly="True" MinWidth="60"/>
+                            <DataGridTextColumn Binding="{Binding FName}" CanUserReorder="False" CanUserResize="False" FontSize="14" Header="Факультет" IsReadOnly="True" MinWidth="80"/>
+                            <DataGridTextColumn Binding="{Binding Course}" CanUserReorder="False" CanUserResize="False" FontSize="14" Header="Курс" IsReadOnly="True" MinWidth="60"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <ComboBox x:Name="Result2ComBox" HorizontalAlignment="Left" Margin="93,0,0,0" VerticalAlignment="Top" Width="154" FontSize="14" SelectionChanged="Result2ComBox_SelectionChanged"/>
@@ -121,7 +121,7 @@
                             <DataGridTextColumn Binding="{Binding SName}" Header="Имя" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="120" FontSize="14"/>
                             <DataGridTextColumn Binding="{Binding Surname}" Header="Фамилия" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="120" FontSize="14"/>
                             <DataGridTextColumn Binding="{Binding GName}" Header="Группа" CanUserReorder="False" CanUserResize="False" IsReadOnly="True" MinWidth="80" FontSize="14"/>
-                            <DataGridTextColumn Binding="{Binding Course}" CanUserReorder="False" CanUserResize="False" ClipboardContentBinding="{x:Null}" FontSize="14" Header="Курс" IsReadOnly="True" MinWidth="80"/>
+                            <DataGridTextColumn Binding="{Binding Course}" CanUserReorder="False" CanUserResize="False" FontSize="14" Header="Курс" IsReadOnly="True" MinWidth="80"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

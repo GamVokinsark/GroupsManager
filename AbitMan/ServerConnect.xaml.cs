@@ -19,7 +19,17 @@ namespace AbitMan
             DBUtils.SetConnection(HostTB.Text, PortTB.Text,
                 SchemaTB.Text, UserTB.Text, PasswordTB.Password);
 
-            MarkerLabel.Content = DBUtils.IsAvailable() ? "Подключено." : "Ошибка!";
+            MarkerLabel.Content =  "Ошибка!";
+            if(DBUtils.IsAvailable())
+            {
+                MarkerLabel.Content = "Подключено.";
+                ProgramData.Host = HostTB.Text;
+                ProgramData.Port = PortTB.Text;
+                ProgramData.User = UserTB.Text;
+                ProgramData.Pswd = PasswordTB.Password;
+                ProgramData.Schema = SchemaTB.Text;
+                ProgramData.SetUserData("Гость", 0);
+            }
         }
 
         private void Window_Closed(object sender, EventArgs e)
