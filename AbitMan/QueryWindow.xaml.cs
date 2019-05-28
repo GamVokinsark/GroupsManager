@@ -10,8 +10,10 @@ namespace AbitMan
     {
         private List<string> GroupList = new List<string>();
         private List<string> FacultyList = new List<string>();
-        public QueryWindow()
+        MainWindow root;
+        public QueryWindow(MainWindow r)
         {
+            root = r;
             InitializeComponent();
             HideAllTabs();
             FillComboBoxes();
@@ -237,7 +239,7 @@ namespace AbitMan
 
         private void QueryWindow1_Closed(object sender, System.EventArgs e)
         {
-            new MainWindow().Show();
+            root.Appear();
         }
 
         private void Result5ComBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)

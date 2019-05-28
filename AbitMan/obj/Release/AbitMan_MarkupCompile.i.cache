@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\GIT\GroupsManager\AbitMan\obj\Debug\
+D:\GIT\GroupsManager\AbitMan\obj\Release\
 AbitMan
 none
 false
-DEBUG;TRACE
+TRACE
 D:\GIT\GroupsManager\AbitMan\App.xaml
 6-977502509
 
-17-995746664
+17-105264149
 14516421685
 LogInWindow.xaml;MainWindow.xaml;ManipulationsWindow.xaml;QueryWindow.xaml;RegistrationWindow.xaml;ServerConnect.xaml;
 
-True
+False
 

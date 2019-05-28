@@ -27,8 +27,10 @@ namespace AbitMan
         private List<Stud_Group> SGList = new List<Stud_Group>();
         private List<Group_Disc> GDList = new List<Group_Disc>();
         private string[] ZvitFormsList =  { "Zalik", "Examen"};
-        public ManipulationsWindow()
+        MainWindow root;
+        public ManipulationsWindow(MainWindow r)
         {
+            root = r;
             InitializeComponent();
             FillStudentList();
             StudChangeIdComBox.SelectedIndex = 0;
@@ -92,7 +94,7 @@ namespace AbitMan
 
         private void ManipWindos_Closed(object sender, EventArgs e)
         {
-            new MainWindow().Show();
+            root.Appear();
         }
 
         private void StudentInitialisation()

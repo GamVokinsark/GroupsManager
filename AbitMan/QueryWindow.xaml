@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AbitMan"
         mc:Ignorable="d"
-        Title="GroupsManager: Окно запросов" Height="333" Width="505" WindowStartupLocation="CenterScreen" Closed="QueryWindow1_Closed" ResizeMode="NoResize">
+        Title="GroupsManager: Окно запросов" Height="333" Width="505" WindowStartupLocation="CenterScreen" Closed="QueryWindow1_Closed" ResizeMode="NoResize" Icon="Drawn_1.ico">
     <Grid>
         <TabControl Margin="10,34,10,10" MinWidth="475" MinHeight="40">
             <TabItem x:Name="StudentTabItem" Header="Student">

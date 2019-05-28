@@ -1,39 +1,47 @@
+Drop table if exists Stud_Group;
+Drop table if exists Group_Disc;
+Drop table if exists Groupz;
+Drop table if exists Faculty;
+Drop table if exists Student;
+Drop table if exists Disciple;
+Drop table if exists Users;
+
 Create table Student (
 	SID Int NOT NULL AUTO_INCREMENT,
 	SName Varchar(20) NOT NULL,
 	Surname Varchar(20) NOT NULL,
 	Course Int NOT NULL,
- Primary Key (SID)) ENGINE = MyISAM;
+ Primary Key (SID)) ENGINE = InnoDB;
 
 Create table Groupz (
 	GID Int NOT NULL AUTO_INCREMENT,
-	Starosta Int NOT NULL,
+	Starosta Int,
 	FID Int NOT NULL,
 	GName Varchar(20) NOT NULL,
 	IsTemp Bool NOT NULL DEFAULT FALSE,
- Primary Key (GID)) ENGINE = MyISAM;
+ Primary Key (GID)) ENGINE = InnoDB;
 
 Create table Disciple (
 	DID Int NOT NULL AUTO_INCREMENT,
 	Title Varchar(20) NOT NULL,
 	ZvitForm Varchar(20) NOT NULL,
 	HoursCount Int,
- Primary Key (DID)) ENGINE = MyISAM;
+ Primary Key (DID)) ENGINE = InnoDB;
 
 Create table Stud_Group (
 	SID Int NOT NULL,
 	GID Int NOT NULL,
- Primary Key (SID,GID)) ENGINE = MyISAM;
+ Primary Key (SID,GID)) ENGINE = InnoDB;
 
 Create table Group_Disc (
 	DID Int NOT NULL,
 	GID Int NOT NULL,
- Primary Key (DID,GID)) ENGINE = MyISAM;
+ Primary Key (DID,GID)) ENGINE = InnoDB;
 
 Create table Faculty (
 	FID Int NOT NULL AUTO_INCREMENT,
 	FName Varchar(20) NOT NULL,
- Primary Key (FID)) ENGINE = MyISAM;
+ Primary Key (FID)) ENGINE = InnoDB;
 
 -- Таблица для программы, а не для ИС
 Create table Users (
@@ -42,21 +50,21 @@ Create table Users (
 	Pswd Char(128) NOT NULL,
 	IsAdmin Bool NOT NULL DEFAULT FALSE,
 	UNIQUE (Login),
- Primary Key (UID)) ENGINE = MyISAM;
+ Primary Key (UID)) ENGINE = InnoDB;
 
 
 Alter table Stud_Group add Foreign Key (SID) 
-references Student (SID) on delete  restrict on update  restrict;
+references Student (SID) on delete  cascade on update  cascade;
 Alter table Groupz add Foreign Key (Starosta) 
 references Student (SID) on delete  restrict on update  restrict;
 Alter table Stud_Group add Foreign Key (GID) 
-references Groupz (GID) on delete  restrict on update  restrict;
+references Groupz (GID) on delete  cascade on update  cascade;
 Alter table Group_Disc add Foreign Key (GID) 
-references Groupz (GID) on delete  restrict on update  restrict;
+references Groupz (GID) on delete  cascade on update  cascade;
 Alter table Group_Disc add Foreign Key (DID) 
-references Disciple (DID) on delete  restrict on update  restrict;
+references Disciple (DID) on delete  cascade on update  cascade;
 Alter table Groupz add Foreign Key (FID) 
-references Faculty (FID) on delete  restrict on update  restrict;
+references Faculty (FID) on delete  cascade on update  cascade;
 
 commit;
 
@@ -162,9 +170,10 @@ INSERT INTO Group_Disc(GID,DID) VALUES
 (10,1);
 
 INSERT INTO Users(Login,Pswd,IsAdmin) VALUES
-('root','99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8',True);
+('root','f21688ca45039bf6593c20660826d56d0f56b977dbac0d15c8267bd5c25f01e058702328d3111a1446f220d69aef39571f46c66db10664c82c35a8e88cc41f2e',True);
 
 commit;
+
 
 -- Список студентов группы Х.
 select SName, Surname, GName, Course

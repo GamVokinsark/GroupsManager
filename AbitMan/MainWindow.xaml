@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AbitMan"
         mc:Ignorable="d"
-        Title="GroupsManager: Окно приветствия" Height="281.167" Width="293.667" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="GroupsManager: Окно приветствия" Height="281.167" Width="293.667" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="Drawn_1.ico">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="28,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="79" Width="230" TextAlignment="Center" FontSize="14"><Run Text="Приветствуем в программе для поддержки работы деканата.  "/><Run Text="Для ра"/><Run Text="боты с данными и запросами нужна регистрация и авторизация."/></TextBlock>
         <Label x:Name="UserNameLabel" Content="Гость" Margin="98,0,0,0" Height="25" VerticalAlignment="Bottom" FlowDirection="RightToLeft" FontSize="14"/>

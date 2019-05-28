@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AbitMan"
         mc:Ignorable="d"
-        Title="GroupsManager: Регистрация" Height="199.996" Width="278.672" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closed="RegistrationWindow1_Closed">
+        Title="GroupsManager: Регистрация" Height="199.996" Width="278.672" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closed="RegistrationWindow1_Closed" Icon="Drawn_1.ico">
     <Grid>
         <Button x:Name="RegisterButton" Content="Зарегистироваться" HorizontalAlignment="Left" Margin="67,124,0,0" VerticalAlignment="Top" Width="129" IsDefault="True" FontSize="14" Click="RegisterButton_Click"/>
         <Label Content="Логин:" HorizontalAlignment="Left" Margin="14,16,0,0" VerticalAlignment="Top" FontSize="14"/>

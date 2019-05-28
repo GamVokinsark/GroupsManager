@@ -10,8 +10,10 @@ namespace AbitMan
     /// </summary>
     public partial class LogInWindow : Window
     {
-        public LogInWindow()
+        MainWindow root;
+        public LogInWindow(MainWindow r)
         {
+            root = r;
             InitializeComponent();
         }
 
@@ -44,8 +46,7 @@ namespace AbitMan
 
         private void LogInWind_Closed(object sender, EventArgs e)
         {
-            new MainWindow().Show();
-            Close();
+            root.Appear();
         }
     }
 }

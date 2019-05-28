@@ -14,6 +14,13 @@ namespace AbitMan
             CheckDbAvailable();
         }
 
+        public void Appear()
+        {
+            CheckUserPrivs();
+            CheckDbAvailable();
+            Show();
+        }
+
         private void QueryButton_Click(object sender, RoutedEventArgs e)
         {
             if(!DBUtils.IsAvailable())
@@ -21,8 +28,8 @@ namespace AbitMan
                 MessageBox.Show("Для данного действия нужно соединение с сервером MySQL!\nВоспользуйтесь \"Подключить к БД\"", "Ошибка");
                 return;
             }
-            new QueryWindow().Show();
-            Close();
+            new QueryWindow(this).Show();
+            Hide();
         }
 
         private void LogInButton_Click(object sender, RoutedEventArgs e)
@@ -32,8 +39,8 @@ namespace AbitMan
                 MessageBox.Show("Для данного действия нужно соединение с сервером MySQL!\nВоспользуйтесь \"Подключить к БД\"", "Ошибка");
                 return;
             }
-            new LogInWindow().Show();
-            Close();
+            new LogInWindow(this).Show();
+            Hide();
         }
 
         private void RegistryButton_Click(object sender, RoutedEventArgs e)
@@ -43,14 +50,14 @@ namespace AbitMan
                 MessageBox.Show("Для данного действия нужно соединение с сервером MySQL!\nВоспользуйтесь \"Подключить к БД\"", "Ошибка");
                 return;
             }
-            new RegistrationWindow().Show();
-            Close();
+            new RegistrationWindow(this).Show();
+            Hide();
         }
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
-            new ServerConnect().Show();
-            Close();
+            new ServerConnect(this).Show();
+            Hide();
         }
 
         private void ManipulateButton_Click(object sender, RoutedEventArgs e)
@@ -60,8 +67,8 @@ namespace AbitMan
                 MessageBox.Show("Для данного действия нужно соединение с сервером MySQL!\nВоспользуйтесь \"Подключить к БД\"", "Ошибка");
                 return;
             }
-            new ManipulationsWindow().Show();
-            Close();
+            new ManipulationsWindow(this).Show();
+            Hide();
         }
 
         private void CheckUserPrivs()
@@ -101,6 +108,11 @@ namespace AbitMan
                 RegistryButton.IsEnabled = false;
                 QueryButton.IsEnabled = false;
                 ManipulateButton.IsEnabled = false;
+            }
+            else
+            {
+                LogInButton.IsEnabled = true;
+                RegistryButton.IsEnabled = true;
             }
         }
     }

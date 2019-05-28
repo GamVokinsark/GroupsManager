@@ -10,8 +10,10 @@ namespace AbitMan
     /// </summary>
     public partial class RegistrationWindow : Window
     {
-        public RegistrationWindow()
+        MainWindow root;
+        public RegistrationWindow(MainWindow r)
         {
+            root = r;
             InitializeComponent();
             if (ProgramData.Privs == 2)
                 IsAdminChB.IsEnabled = true;
@@ -43,7 +45,7 @@ namespace AbitMan
 
         private void RegistrationWindow1_Closed(object sender, EventArgs e)
         {
-            new MainWindow().Show();
+            root.Appear();
         }
     }
 }

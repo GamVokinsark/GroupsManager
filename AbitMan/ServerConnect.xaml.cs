@@ -8,8 +8,10 @@ namespace AbitMan
     /// </summary>
     public partial class ServerConnect : Window
     {
-        public ServerConnect()
+        MainWindow root;
+        public ServerConnect(MainWindow r)
         {
+            root = r;
             InitializeComponent();
             SetFieldValues();
         }
@@ -34,7 +36,7 @@ namespace AbitMan
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            new MainWindow().Show();
+            root.Appear();
         }
 
         private void SetFieldValues()
